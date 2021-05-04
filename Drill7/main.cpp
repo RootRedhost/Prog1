@@ -23,9 +23,7 @@ void inc_contents(C& c, int n = 1)
         a += n;
 }
 
-// 6 Write a copy operation
-template<typename Iter1, typename Iter2>
-    // requires Input_iterator<Iter1>() && Output_iterator<Iter2>()
+template<typename Iter1, typename Iter2>   
 Iter2 my_copy(Iter1 f1, Iter1 e1, Iter2 f2)
 {
     for (Iter1 p = f1; p != e1; ++p)
@@ -37,29 +35,24 @@ int main()
 try {
     constexpr int size = 10;
 
-    // 1(?) Define an array of 10 ints w/values 0-9
     int arr[size];
     for (int i = 0; i < size; ++i) arr[i] = i;
     print(arr, "built-in []: ");
 
-    // 1 - by virtue of instruction 4 to copy
     std::array<int, size> ai;
     std::copy(arr, arr + size, ai.begin());
     print(ai, "std::array: ");
 
-    // 2 Define a vector with the same 10 elements
     std::vector<int> vi(size);
     std::copy(arr, arr + size, vi.begin());
     print(vi, "std::vector: ");
 
-    // 3 Define a list with the same 10 elements
     std::list<int> li(size);
     std::copy(arr, arr + size, li.begin());
     print(li, "std::list: ");
 
     std::cout << '\n';contents
 
-    // 4 Define copies of the array, vector & list
     std::array<int, size> ai2 = ai;
     std::vector<int> vi2 = vi;
     std::list<int> li2 = li;
@@ -69,7 +62,6 @@ try {
 
     std::cout << '\n';
 
-    // 5 Increase values in array by 2, vector by 3 and list by 5
     inc_contents(ai2, 2);
     inc_contents(vi2, 3);
     inc_contents(li2, 5);
@@ -79,14 +71,12 @@ try {
 
     std::cout << '\n';
 
-    // 7 Use my_copy to copy array into vector and list into array
     my_copy(ai2.begin(), ai2.end(), vi2.begin());
     my_copy(li2.begin(), li2.end(), ai2.begin());
     print(ai2, "array copied: ");
     print(vi2, "vector copied: ");
     print(li2, "list copied: ");
 
-    // 8 Use std::find to search for values
     std::vector<int>::iterator vit;
     vit = std::find(vi2.begin(), vi2.end(), 3);
     if (vit != vi2.end())
