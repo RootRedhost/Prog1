@@ -17,7 +17,7 @@ void print(const C& c, const std::string& s = "")
 }
 
 template<typename C>
-void inc_contents(C& c, int n = 1)
+void novel(C& c, int n = 1)
 {
     for (auto& a : c)
         a += n;
@@ -62,9 +62,9 @@ try {
 
     std::cout << '\n';
 
-    inc_contents(ai2, 2);
-    inc_contents(vi2, 3);
-    inc_contents(li2, 5);
+    novel(ai2, 2);
+    novel(vi2, 3);
+    novel(li2, 5);
     print(ai2, "array +2: ");
     print(vi2, "vector +3: ");
     print(li2, "list +5: ");
